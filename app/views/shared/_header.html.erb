@@ -1,0 +1,35 @@
+<div class="navbar">
+
+	<table border="0" width="987" height="139" cellspacing="0" cellpadding="0" align="center">
+		<tr>
+			<td valign="middle" align="right" id="logo-td"><%=link_to image_tag("/assets/gnhd.png",{alt: "", border: "0px",id: "logo-img"}), "http://www.gnhd.org" %></td>
+
+			<td valign="top" align="left">
+				<table border="0" width="100%" height="84" cellspacing="0" cellpadding="0">
+					<tr>
+						<td></td>
+					</tr>
+					<!-- <tr>
+						<td align="right"><img border="0" width="116" height="45" usemap="#gq" src="/assets/gq.jpg"></td>
+					</tr> -->
+				</table> 
+
+				<% if locale.eql? :"en"%>
+					<%= render "shared/header_menu_en" %>
+				<% else %>
+					<%= render "shared/header_menu" %>
+				<% end %>
+
+			</td>
+
+			<!-- <td width="361" valign="middle" align="center"><%=image_tag "/assets/gnhd_05.png",alt: "",id: "header_integrate"%></td> -->
+			<td width="150" valign="middle" align="center"></td>
+		</tr>
+
+	</table>
+	<map name="gq">
+		<area href="http://gnhd.org" coords="0,0,29,21" shape="rect">
+		<area href="http://gnhd.org/en" coords="0,21,29,43" shape="rect">
+	</map>
+
+</div>

@@ -1,0 +1,79 @@
+// for ie
+article, section, aside, hgroup, nav, header, footer, figure, figcaption {
+	display: block;
+}
+figure, embed, audio, video, canvas {
+	display: inline-block;
+	*display: inline;
+	*zoom: 1;
+}
+
+#main div {
+	border-radius: 10px;
+	-webkit-border-radius: 10px;
+	-moz-border-radius:10px;
+}
+#main {
+	//background-color: #F8ECDC;
+	background-color: #FFFEF4;
+	margin-top: 50px;
+	padding-left: 10px;
+	padding-right: 10px;
+
+	width: 987px;
+	display: table;
+	margin: 0 auto;
+}
+.container-fluid {
+	padding-left: 2px;
+	padding-right: 2px;
+}
+
+footer {
+	margin-top: 8px;
+	//background-color: #F8ECDC;
+	padding-left: 20px;
+	padding-right: 30px;
+	width: 987px;
+
+	display: table;
+	margin: 0 auto;
+}
+
+body {
+	//background-color: #F8ECDC;
+	border-radius: 0px;
+	-webkit-border-radius: 0px;
+	-moz-border-radius: 0px;
+}
+
+
+
+.hero-unit {
+	height: 300px;
+}
+
+.hidding-line {
+	background: none repeat scroll 0 0 transparent;
+	//background-color: #F8ECDC;
+	//box-shadow: 0 1px 0 #FFFFFF;
+	height: 1px;
+	margin-top: 20px;
+	width: 100%;
+	//display: none;
+}
+.landing-line {
+	background-color: #E1D8CD;
+	box-shadow: 0 1px 0 #FFFFFF;
+	height: 1px;
+	margin-top: 20px;
+	width: 100%;
+}
+
+.footer-left {
+	float: left;
+}
+.footer-right {
+	float: right;
+}
+

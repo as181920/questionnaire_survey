@@ -1,14 +1,47 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>QuestionnaireSurvey</title>
-  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+
+	<title>问卷调查</title>
+
+	<%= include_gon %>
+
+	<!-- JS -->
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+
+	<!-- CSS -->
+	<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.no-icons.min.css" rel="stylesheet">
+	<link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css" rel="stylesheet">
+  <%= stylesheet_link_tag    "http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css", :media => "all" %>
+  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+
+	<!-- IE -->
+	<!--[if lt IE 9]>
+	<script src="http://api.html5media.info/1.1.4/html5media.min.js"></script>
+	<![endif]-->
+	<!--[if IE]>
+	<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+
+	<%= favicon_link_tag image_path('favicon.ico')%>
   <%= csrf_meta_tags %>
 </head>
 <body>
 
-<%= yield %>
+	<header>
+		<%= render "shared/header"%>
+	</header>
+
+  <%= render "shared/flash_messages"%>
+
+	<section id="main">
+    <%= yield %>
+	</section>
+
+	<footer>
+		<%= render "shared/footer"%>
+	</footer>
 
 </body>
 </html>

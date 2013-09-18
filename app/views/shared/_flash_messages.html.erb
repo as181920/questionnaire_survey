@@ -1,0 +1,7 @@
+<% flash.each do |name, msg| %>
+	<% name_bootstrap = {alert: "warning", notice: "success"}[name] -%>
+	<%= content_tag :div, class: "alert alert-#{name_bootstrap} flash_message_box" do %>
+		<strong><%=msg%></strong>
+		<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+	<% end %>
+<% end %>

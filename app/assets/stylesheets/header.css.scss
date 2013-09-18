@@ -1,0 +1,38 @@
+
+.navbar {
+	//background: none repeat scroll 0 0 transparent;
+	background-image: url(header_bg.png);
+	height: 139px;
+	//position: fixed;
+}
+
+header #logo-td {
+	height: 112px;
+	width: 112px;
+	//margin-left: 8px;
+}
+header #logo-img {
+	height: 112px;
+	width: 112px;
+	margin-left: 8px;
+}
+
+#header_nav td {
+	text-align: center;
+	padding-left: 7px;
+	padding-right: 7px;
+	padding-top: 0px;
+	vertical-align: bottom;
+}
+
+header #header_integrate {
+	height: 101px;
+	width: 310px;
+}
+
+header #header_gq {
+	padding-bottom: 2px;
+	//max-height: 40px;
+	//height: 38px;
+	//width: auto;
+}
