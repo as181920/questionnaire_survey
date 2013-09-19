@@ -1,0 +1,16 @@
+<div class="form-group">
+  <%= f.label :title, "问题", class: "control-label col-md-1" %>
+  <div class="col-md-10">
+    <%= f.text_field :title, class: "form-control" %>
+  </div>
+  <div class="col-md-1">
+    <%= f.link_to_remove raw("<i class='icon-remove'></i>删除"), class: "btn btn-danger" %>
+  </div>
+</div>
+<%= f.fields_for :answers do |fff| %>
+  <%= render "answer_fields", f: fff %>
+<% end -%>
+
+<div class="actions">
+  <%= f.link_to_add raw("<i class='icon-plus'></i>添加回答"), :answers, class: "btn lnk_add_answer" %>
+</div>

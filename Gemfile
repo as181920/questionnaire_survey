@@ -19,6 +19,7 @@ gem "ransack"
 gem 'kaminari'
 gem "simple_form"
 gem "nested_form"
+gem 'rails_kindeditor', '~> 0.4.0'
 gem 'rack-mini-profiler', :git => 'git@github.com:ashishbista/rack-mini-profiler.git'
 
 gem 'jbuilder', '~> 1.2'
@@ -47,7 +48,6 @@ end
 
 #gem "jquery-fileupload-rails"
 #gem 'carrierwave'
-#gem 'rails_kindeditor', '~> 0.3.18'
 #gem 'acts-as-taggable-on'
 
 

@@ -1,0 +1,31 @@
+<%= nested_form_for @survey, html: {class: "form-horizontal", role: "form"} do |f|  %>
+  <%= render "shared/error_messages", target: @survey %>
+
+  <div class="form-group">
+    <div class="col-md-12">
+      <%= f.text_field :name, autofocus: true, placeholder: "文件名称", class: "form-control" %>
+    </div>
+  </div>
+  <div class="form-group">
+    <h2>问卷前言</h2>
+    <%= f.text_area :preface, rows: 10, class: "kindeditor_area"  %>
+  </div>
+
+  <%= f.fields_for :questions do |ff| -%>
+    <%= render "question_fields", f: ff %>
+  <% end -%>
+
+  <div class="actions">
+    <%= f.link_to_add raw("<i class='icon-plus'></i>添加问题"), :questions, class: "btn" %>
+    &nbsp; &nbsp; &nbsp;
+    <br />
+    <br />
+    
+    <%= f.submit "提交", data: {disable_with: "提交中ing"}, class: "btn btn-primary btn-block" %>
+  </div>
+
+<% end -%>
+
+<%= javascript_tag do %>
+	load_kindeditor();
+<% end -%>

@@ -1,4 +1,11 @@
 QuestionnaireSurvey::Application.routes.draw do
+
+  resources :surveys do
+    resources :questions do
+      resources :answers
+    end
+  end
+
   get "welcome/index"
   get "welcome/test"
   root 'welcome#index'
