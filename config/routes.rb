@@ -4,6 +4,10 @@ QuestionnaireSurvey::Application.routes.draw do
     resources :questions do
       resources :answers
     end
+
+    resources :answer_sheets do
+      resources :answer_results
+    end
   end
 
   get "welcome/index"

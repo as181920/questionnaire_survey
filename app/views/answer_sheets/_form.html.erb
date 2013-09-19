@@ -1,0 +1,36 @@
+<div class="row">
+  <div class="col-md-12">
+    <h2><%= @survey.name %></h2>
+
+    <%= raw @survey.preface %>
+  </div>
+</div>
+<br />
+
+
+<div class="row">
+  <div class="col-md-12">
+<%= nested_form_for [@survey, @answer_sheet], html: {class: "form", role: "form"} do |f| %>
+  <%= render "shared/error_messages", target: @answer_sheet %>
+
+  <% @survey.questions.each_with_index do |question, i| -%>
+    <p><strong><%= raw("<span class='label label-default'>#{i+1}</span>&nbsp;&nbsp;#{question.title}") %></strong></p>
+    <% question.answers.each_with_index do |answer, ii| -%>
+      <div class="options_for_answer">
+        <div class="checkbox">
+          <%= label_tag answer.id do %>
+            <%= check_box_tag answer.id %><%= answer.title %>
+          <% end -%>
+        </div>
+      </div>
+      
+    <% end -%>
+    <br />
+  <% end -%>
+
+  <div class="actions">
+    <%= f.submit "提交", data: {disable_with: "提交中ing"}, class: "btn btn-primary btn-block" %>
+  </div>
+<% end %>
+  </div>
+</div>

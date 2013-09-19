@@ -1,0 +1,27 @@
+<h1>问卷回复列表</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Survey</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @answer_sheets.each do |answer_sheet| %>
+      <tr>
+        <td><%= answer_sheet.survey_id %></td>
+        <td><%#= link_to 'Show', answer_sheet %></td>
+        <td><%#= link_to 'Edit', edit_answer_sheet_path(answer_sheet) %></td>
+        <td><%#= link_to 'Destroy', answer_sheet, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Answer sheet', new_survey_answer_sheet_path(@survey) %>

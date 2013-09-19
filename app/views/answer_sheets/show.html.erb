@@ -1,0 +1,9 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Survey:</strong>
+  <%= @answer_sheet.survey_id %>
+</p>
+
+<%= link_to 'Edit', edit_answer_sheet_path(@answer_sheet) %> |
+<%= link_to 'Back', answer_sheets_path %>

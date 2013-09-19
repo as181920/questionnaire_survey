@@ -16,6 +16,7 @@
 					<th>创建日期</th>
 					<th>更新日期</th>
 					<th></th>
+					<th></th>
 				</tr>
 			</thead>
 			<tbody>
@@ -26,6 +27,7 @@
 					<td><%= it.questions.count %></td>
 					<td><%= it.created_at.strftime("%Y-%m-%d %H:%M") %></td>
 					<td><%= it.updated_at.strftime("%Y-%m-%d %H:%M") %></td>
+          <td><%= link_to raw("<i class='icon-edit-sign icon-2x'></i>"), new_survey_answer_sheet_path(it), class: "" %></td>
 					<td>
 						<%= link_to raw("<i class='icon-folder-open'></i>"), it %>
 						&nbsp;
