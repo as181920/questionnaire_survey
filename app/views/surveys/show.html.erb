@@ -1,14 +1,39 @@
-<p id="notice"><%= notice %></p>
+<div class="row">
+  <div class="col-md-12">
+    <h2><%= @survey.name %></h2>
 
-<p>
-  <strong>Name:</strong>
-  <%= @survey.name %>
-</p>
+    <%= raw @survey.preface %>
+  </div>
+</div>
 
-<p>
-  <strong>Preface:</strong>
-  <%= @survey.preface %>
-</p>
+
+<div class="row">
+  <div class="col-md-12">
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>问题</th>
+          <th>选项</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @survey.questions.each do |question| -%>
+          <tr>
+            <td><%= question.title %></td>
+            <td>
+              <ul>
+                <% question.answers.each do |answer| -%>
+                  <li><%= answer.title %><%= "(+)" if answer.need_comment %></li>
+                <% end -%>
+              </ul>
+            </td>
+          </tr>
+        <% end -%>
+      </tbody>
+    </table>
+  </div>
+</div>
+
 
 <%= link_to 'Edit', edit_survey_path(@survey) %> |
 <%= link_to 'Back', surveys_path %>

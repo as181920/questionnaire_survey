@@ -1,29 +1,46 @@
-<h1>Listing surveys</h1>
+<h1>调查问卷列表</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Preface</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
+<div class="row">
+	<div class="col-md-12">
+		<%= link_to raw("<i class='icon-plus'></i>新建"), new_survey_path, class: "btn btn-primary" %>
+	</div>
+</div>
 
-  <tbody>
-    <% @surveys.each do |survey| %>
-      <tr>
-        <td><%= survey.name %></td>
-        <td><%= survey.preface %></td>
-        <td><%= link_to 'Show', survey %></td>
-        <td><%= link_to 'Edit', edit_survey_path(survey) %></td>
-        <td><%= link_to 'Destroy', survey, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<div class="row">
+	<div class="col-md-12">
+		<table class="table table-hover">
+			<thead>
+				<tr>
+					<th>问卷名称</th>
+					<th>问题数量</th>
+					<th>创建日期</th>
+					<th>更新日期</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				<% @surveys.each do |it| -%>
+					
+				<tr>
+					<td><%= it.name %></td>
+					<td><%= it.questions.count %></td>
+					<td><%= it.created_at.strftime("%Y-%m-%d %H:%M") %></td>
+					<td><%= it.updated_at.strftime("%Y-%m-%d %H:%M") %></td>
+					<td>
+						<%= link_to raw("<i class='icon-folder-open'></i>"), it %>
+						&nbsp;
+						<%= link_to raw("<i class='icon-edit'></i>"), polymorphic_path(it, action: :edit) %>
+						&nbsp;
+						<%= link_to raw("<i class='icon-remove'></i>"), it, method: :delete, data: {confirm: "Are you sure?"} %>
+					</td>
+				</tr>
+				<% end -%>
+			</tbody>
+		</table>
 
-<br>
+		<%=paginate @surveys%>
 
-<%= link_to 'New Survey', new_survey_path %>
+	</div>
+</div>
+
+

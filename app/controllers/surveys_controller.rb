@@ -4,7 +4,8 @@ class SurveysController < ApplicationController
   # GET /surveys
   # GET /surveys.json
   def index
-    @surveys = Survey.all
+    @per_page = params[:per_page].present? ? params[:per_page].to_i : 20
+    @surveys = Survey.order("updated_at desc").page([params[:page].to_i,1].max).per(@per_page)
   end
 
   # GET /surveys/1
@@ -76,6 +77,6 @@ class SurveysController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def survey_params
       #params.require(:survey).permit(:name, :preface)
-      params.require(:survey).permit(:name, :preface, questions_attributes: [:_destroy, :title, answers_attributes: [:_destroy, :title, :need_comment]])
+      params.require(:survey).permit(:name, :preface, questions_attributes: [:_destroy, :id, :title, answers_attributes: [:_destroy, :id, :title, :need_comment]])
     end
 end
