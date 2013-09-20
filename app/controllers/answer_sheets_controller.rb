@@ -16,6 +16,9 @@ class AnswerSheetsController < ApplicationController
     @answer_sheet = @survey.answer_sheets.find params[:id]
   end
 
+  def done
+  end
+
   # GET /answer_sheets/new
   def new
     @survey = Survey.find params[:survey_id]
@@ -45,7 +48,8 @@ class AnswerSheetsController < ApplicationController
 
     respond_to do |format|
       if @answer_sheet.save
-        format.html { redirect_to [@survey,@answer_sheet], notice: 'Answer sheet was successfully created.' }
+        #format.html { redirect_to [@survey,@answer_sheet], notice: 'Answer sheet was successfully created.' }
+        format.html { redirect_to done_survey_answer_sheet_path(@survey,@answer_sheet), notice: 'Answer sheet was successfully created.' }
         format.json { render action: 'show', status: :created, location: @answer_sheet }
       else
         format.html { render action: 'new' }

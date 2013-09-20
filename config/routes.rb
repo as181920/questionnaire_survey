@@ -7,6 +7,9 @@ QuestionnaireSurvey::Application.routes.draw do
 
     resources :answer_sheets do
       resources :answer_results
+      member do
+        get :done
+      end
     end
   end
 
