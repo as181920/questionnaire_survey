@@ -1,0 +1,15 @@
+<% question.answers.each_with_index do |answer, a_index| -%>
+	<div class="options_for_answer">
+		<%= label_tag "answer_sheet[answer_results][#{question.id}][result][#{answer.id}][checked]", class: "checkbox-inline" do %>
+			<%= check_box_tag "answer_sheet[answer_results][#{question.id}][result][#{answer.id}][checked]" %>
+			<%= answer.title %>
+		<% end -%>
+
+		<% if answer.need_comment -%>
+			&nbsp; &nbsp;
+			<div class="form-group">
+				<%= text_field_tag "answer_sheet[answer_results][#{question.id}][result][#{answer.id}][comment]", "", class: "form-control input-2x" %>
+			</div>
+		<% end -%>
+	</div>
+<% end -%>

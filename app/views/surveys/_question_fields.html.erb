@@ -1,6 +1,9 @@
 <div class="form-group">
   <%= f.label :title, "问题", class: "control-label col-md-1" %>
-  <div class="col-md-10">
+  <div class="col-md-2">
+		<%= f.select :category, options_for_select(Question::CategoriesForSelect,f.object.category) , {}, class: "form-control" %>
+  </div>
+  <div class="col-md-8">
     <%= f.text_field :title, class: "form-control" %>
   </div>
   <div class="col-md-1">

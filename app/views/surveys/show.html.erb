@@ -14,13 +14,16 @@
       <thead>
         <tr>
           <th>问题</th>
+          <th>类型</th>
           <th>选项</th>
+          <th>结果</th>
         </tr>
       </thead>
       <tbody>
         <% @survey.questions.each do |question| -%>
           <tr>
             <td><%= question.title %></td>
+            <td><%= question.category_name %></td>
             <td>
               <ul>
                 <% question.answers.each do |answer| -%>
@@ -28,6 +31,24 @@
                 <% end -%>
               </ul>
             </td>
+						<td>
+              <ul>
+                <% question.answers.each do |answer| -%>
+									<% results = @survey.answer_results.where(question_id: question.id).where("content::hstore ? \'#{answer.id}\'") -%>
+									<li>
+										<%= answer.title %>(选择人数：<%=results.count %>)
+										<br />
+										<% if answer.need_comment -%>
+											<ul>
+												<% results.map{|result| result.content[answer.id.to_s]}.each do |comment| %>
+													<li> <%= comment %> </li>
+												<% end -%>
+											</ul>
+										<% end -%>
+									</li>
+                <% end -%>
+              </ul>
+						</td>
           </tr>
         <% end -%>
       </tbody>

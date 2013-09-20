@@ -1,36 +1,29 @@
 <div class="row">
-  <div class="col-md-12">
-    <h2><%= @survey.name %></h2>
+	<div class="col-md-12">
+		<h2><%= @survey.name %></h2>
 
-    <%= raw @survey.preface %>
-  </div>
+		<%= raw @survey.preface %>
+	</div>
 </div>
 <br />
 
 
 <div class="row">
-  <div class="col-md-12">
-<%= nested_form_for [@survey, @answer_sheet], html: {class: "form", role: "form"} do |f| %>
-  <%= render "shared/error_messages", target: @answer_sheet %>
+	<div class="col-md-12">
+		<%= form_tag [@survey, @answer_sheet],class: "form-inline", role: "form" do |f| %>
+			<%= render "shared/error_messages", target: @answer_sheet %>
 
-  <% @survey.questions.each_with_index do |question, i| -%>
-    <p><strong><%= raw("<span class='label label-default'>#{i+1}</span>&nbsp;&nbsp;#{question.title}") %></strong></p>
-    <% question.answers.each_with_index do |answer, ii| -%>
-      <div class="options_for_answer">
-        <div class="checkbox">
-          <%= label_tag answer.id do %>
-            <%= check_box_tag answer.id %><%= answer.title %>
-          <% end -%>
-        </div>
-      </div>
-      
-    <% end -%>
-    <br />
-  <% end -%>
+			<% @survey.questions.each_with_index do |question, q_index| %>
+				<p><strong><%= raw("<span class='label label-default'>#{q_index+1}</span>&nbsp;&nbsp;#{question.title}") %></strong></p>
 
-  <div class="actions">
-    <%= f.submit "提交", data: {disable_with: "提交中ing"}, class: "btn btn-primary btn-block" %>
-  </div>
-<% end %>
-  </div>
+				<%= render "answer_result_fields", answer_sheet: @answer_sheet, question: question, q_index: q_index %>
+			<% end -%>
+
+			<br />
+
+			<div class="actions">
+				<%= submit_tag "提交", data: {disable_with: "提交中ing"}, class: "btn btn-primary btn-block" %>
+			</div>
+		<% end %>
+	</div>
 </div>

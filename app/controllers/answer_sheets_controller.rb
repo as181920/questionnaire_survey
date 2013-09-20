@@ -12,12 +12,17 @@ class AnswerSheetsController < ApplicationController
   # GET /answer_sheets/1
   # GET /answer_sheets/1.json
   def show
+    @survey = Survey.find params[:survey_id]
+    @answer_sheet = @survey.answer_sheets.find params[:id]
   end
 
   # GET /answer_sheets/new
   def new
     @survey = Survey.find params[:survey_id]
     @answer_sheet = @survey.answer_sheets.new
+    @survey.questions.each do |question|
+      @answer_sheet.answer_results.build(question_id: question.id, content: {})
+    end
   end
 
   # GET /answer_sheets/1/edit
@@ -27,11 +32,20 @@ class AnswerSheetsController < ApplicationController
   # POST /answer_sheets
   # POST /answer_sheets.json
   def create
-    @answer_sheet = AnswerSheet.new(answer_sheet_params)
+    #@answer_sheet = @survey.answer_sheets.new(answer_sheet_params)
+    @survey = Survey.find params[:survey_id]
+    @answer_sheet = @survey.answer_sheets.build
+    answer_sheet_params[:answer_results].each do |question_id, answer_data|
+      answer_result = @answer_sheet.answer_results.new question_id: question_id
+
+      answer_data[:result].each do |answer_id, result_data|
+        answer_result.content = answer_result.content.to_h.merge(answer_id => result_data[:comment])
+      end
+    end
 
     respond_to do |format|
       if @answer_sheet.save
-        format.html { redirect_to @answer_sheet, notice: 'Answer sheet was successfully created.' }
+        format.html { redirect_to [@survey,@answer_sheet], notice: 'Answer sheet was successfully created.' }
         format.json { render action: 'show', status: :created, location: @answer_sheet }
       else
         format.html { render action: 'new' }
@@ -72,6 +86,7 @@ class AnswerSheetsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def answer_sheet_params
-      params.require(:answer_sheet).permit(:survey_id)
+      #params.require(:answer_sheet).permit(:survey_id)
+      params.require(:answer_sheet).permit(:survey_id, answer_results: [:id, :question_id, result: [:checked, :comment]])
     end
 end

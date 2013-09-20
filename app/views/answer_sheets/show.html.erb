@@ -1,9 +1,29 @@
-<p id="notice"><%= notice %></p>
+<div class="row">
+	<div class="col-md-12">
+		<h2><%= @survey.name %></h2>
 
-<p>
-  <strong>Survey:</strong>
-  <%= @answer_sheet.survey_id %>
-</p>
+		<%= raw @survey.preface %>
+	</div>
+</div>
 
-<%= link_to 'Edit', edit_answer_sheet_path(@answer_sheet) %> |
-<%= link_to 'Back', answer_sheets_path %>
+<div class="row">
+	<div class="col-md-12">
+			<% @survey.questions.each_with_index do |question, q_index| %>
+				<p><strong><%= raw("<span class='label label-default'>#{q_index+1}</span>&nbsp;&nbsp;#{question.title}") %></strong></p>
+
+				<% question.answers.each_with_index do |answer, a_index| -%>
+					<div class="options_for_answer">
+						<% @answer_sheet.answer_results.where("content::hstore ? \'#{answer.id}\'").find_by(question_id: question.id).try(:content).to_h.each do |answer_id, comment| %>
+
+							<p>
+								<%= answer.title %>
+								<%= "(#{comment})" if comment.present? %>
+							</p>
+						<% end -%>
+					</div>
+				<% end -%>
+			<% end -%>
+	</div>
+</div>
+<%#= link_to 'Edit', edit_answer_sheet_path(@answer_sheet) %>
+<%= link_to 'Back', survey_answer_sheets_path(@survey) %>
