@@ -14,7 +14,7 @@
 			<%= render "shared/error_messages", target: @answer_sheet %>
 
 			<% @survey.questions.each_with_index do |question, q_index| %>
-				<p><strong><%= raw("<span class='label label-default'>#{q_index+1}</span>&nbsp;&nbsp;#{question.title}") %></strong></p>
+				<p class="question_title" data-question_category="<%=question.category%>"><strong><%= raw("<span class='label label-default'>#{q_index+1} #{question.category_name}</span>&nbsp;&nbsp;#{question.title}") %></strong></p>
 
 				<%= render "answer_result_fields", answer_sheet: @answer_sheet, question: question, q_index: q_index %>
 			<% end -%>
@@ -27,3 +27,7 @@
 		<% end %>
 	</div>
 </div>
+
+<%= javascript_tag do %>
+	load_question_category_style();
+<% end %>

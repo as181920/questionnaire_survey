@@ -36,6 +36,7 @@ class AnswerSheetsController < ApplicationController
   # POST /answer_sheets.json
   def create
     #@answer_sheet = @survey.answer_sheets.new(answer_sheet_params)
+    #ERROR: 此处对于有文字输入的选线，当选项取消后，后端数据仍为选中。
     @survey = Survey.find params[:survey_id]
     @answer_sheet = @survey.answer_sheets.build
     answer_sheet_params[:answer_results].each do |question_id, answer_data|

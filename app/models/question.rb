@@ -8,7 +8,7 @@ class Question < ActiveRecord::Base
   validates_presence_of :title
 
   #CategoriesForSelect = [["单选题",1],["多选题",2],["问答题",3]]
-  CategoriesForSelect = [["单选题",1],["多选题",2]]
+  CategoriesForSelect = [["单选",1],["多选",2]]
 
   def category_name
     Hash[CategoriesForSelect].key category
